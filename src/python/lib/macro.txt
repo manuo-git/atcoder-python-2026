@@ -1,0 +1,16 @@
+rn=python answer.py $l inout/input.txt MY_JUDGE
+rnrn=python answer.py $l inout/input.txt MY_JUDGE
+brn=python random_test/answer_bf.py $l inout/input.txt
+hrn=wsl /home/manuo/.codon/bin/codon run heuristic.py $l hinput.txt $r houtput.txt
+grn=python random_test/gen_rand.py
+build=wsl /home/manuo/.codon/bin/codon build --release -o a.out answer.py                                       
+crun=wsl /home/manuo/.codon/bin/codon run answer.py $l inout/input.txt
+crn=wsl ./a.out $l inout/input.txt
+go=cd src/python
+clear=rmdir /s /q test
+test=oj generate-input --hack-actual "python answer.py" --hack-expected "python random_test/answer_bf.py" "python random_test/gen_rand.py" 1
+ctest=oj generate-input --hack-actual "wsl ./a.out" --hack-expected "python random_test/answer_bf.py" "python random_test/gen_rand.py" 1
+cl=python lib/paste2clip.py
+c=python lib/copyfromclip.py
+updatesnipet=python lib/updatesnipet.py
+file2json=python lib/file2json.py
