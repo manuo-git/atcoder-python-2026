@@ -3,8 +3,6 @@
 class DSU:
     '''
     Disjoint Set Union for codon, PyPy3
-
-    N: 頂点数
     '''
     N: int
     _parent: list[int]
@@ -13,7 +11,6 @@ class DSU:
         self.N = N
         self._parent = [-1] * N
     def leader(self, Vi: int) -> int:
-        '頂点Viの現在の代表元を返します。'
         assert 0 <= Vi < self.N
         Pi = Vi
         while self._parent[Pi] >= 0:
@@ -22,7 +19,6 @@ class DSU:
             self._parent[Vi], Vi = Pi, self._parent[Vi]
         return Pi
     def merge(self, Ui: int, Vi: int) -> int:
-        '頂点Uiと頂点Viを結ぶ辺を追加し、連結成分の代表元を返します。'
         assert 0 <= Ui < self.N and 0 <= Vi < self.N
         Pi, Ci = self.leader(Ui), self.leader(Vi)
         if Pi != Ci:
@@ -32,15 +28,12 @@ class DSU:
             self._parent[Ci] = Pi
         return Pi
     def same(self, Ui: int, Vi: int) -> bool:
-        '頂点Uiと頂点Viが連結か判定します。'
         assert 0 <= Ui < self.N and 0 <= Vi < self.N
         return self.leader(Ui) == self.leader(Vi)
     def size(self, Vi: int) -> int:
-        '頂点Viの属する連結成分のサイズを返します。'
         assert 0 <= Vi < self.N
         return - self._parent[ self.leader(Vi) ]
     def groups(self) -> list[list[int]]:
-        '各連結成分の頂点を昇順に並べたリストを、辞書順に並べ替えて返します。'
         buffer: list[int] = [-1] * self.N
         G: list[list[int]] = []
         for now in range(self.N):
