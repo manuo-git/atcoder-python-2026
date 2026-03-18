@@ -1,7 +1,7 @@
 # https://github.com/tatyam-prime/SortedSet/blob/main/codon/SortedSet.py
-import math
 from bisect import bisect_left, bisect_right
 from typing import ClassVar, Generator, Optional
+from math import ceil, sqrt
 
 class SortedSet[T]:
     size: int
@@ -16,8 +16,9 @@ class SortedSet[T]:
     def __init__(self, a: Generator[T]) -> None:
         self.__init__(list(a))
 
-    def __init__(self, a: list[T]) -> None:
+    def __init__(self, _a: list[T]) -> None:
         "Make a new SortedSet from a list. / O(N) if sorted and unique / O(N log N)"
+        a = _a[:]
         n = len(a)
         if any(a[i] > a[i + 1] for i in range(n - 1)):
             a.sort()
@@ -27,7 +28,7 @@ class SortedSet[T]:
                 if not a or a[-1] != x:
                     a.append(x)
         n = self.size = len(a)
-        num_bucket = int(math.ceil(math.sqrt(n / self.BUCKET_RATIO)))
+        num_bucket = int(ceil(sqrt(n / self.BUCKET_RATIO)))
         self.a = [a[n * i // num_bucket : n * (i + 1) // num_bucket] for i in range(num_bucket)]
 
     def __iter__(self) -> Generator[T]:

@@ -1,6 +1,6 @@
 # https://github.com/tatyam-prime/SortedSet/blob/main/codon/BucketList.py
-import math
 from typing import ClassVar, Generator
+from math import ceil, sqrt
 
 class BucketList[T]:
     size: int
@@ -17,7 +17,7 @@ class BucketList[T]:
     
     def __init__(self, a: list[T]) -> None:
         n = self.size = len(a)
-        num_bucket = int(math.ceil(math.sqrt(n / self.BUCKET_RATIO)))
+        num_bucket = int(ceil(sqrt(n / self.BUCKET_RATIO)))
         self.a = [a[n * i // num_bucket : n * (i + 1) // num_bucket] for i in range(num_bucket)]
 
     def __iter__(self) -> Generator[T]:
