@@ -24,4 +24,9 @@
         "command": "-breadcrumbs.focus",
         "when": "breadcrumbsPossible && breadcrumbsVisible"
     },
+    {
+        "key": "ctrl+shift+u",
+        "command": "extension.deleteAllBelow",
+        "when": "editorTextFocus"
+    }
 ]
